@@ -17,7 +17,7 @@ library(emmeans)
 library(car)
 
 # read in data
-Density.1 <-read_excel("R:/Scistocephalus/EggDensity_SaraEngel/Density.plate.eggs_2.xlsx", sheet="Trimmed 2")
+Density.1 <-read_excel("PATH/Density.plate.eggs_2.xlsx", sheet="Trimmed 2")
 
 Density.1$Clutch <- Density.1$Cross
 
@@ -58,6 +58,7 @@ Density.2 <- Density.1 %>%
 AllEggs <- ggplot(Density.2, aes(x=Density.micro.l, y=log(Total), color = Clutch)) +
   #geom_point(position =  position_jitterdodge(jitter.width = 25, jitter.height = 0.2, dodge.width = 15), alpha= 0.3) +
   theme_classic() +
+  theme(text = element_text(size = 18))+
   geom_smooth(method = "lm", alpha = 0.2, size = .5)+
   xlab("Egg Solution Volume (µl)") +
   ylab("ln(Eggs per photo)") +
@@ -197,9 +198,9 @@ Eggs
 Density.3 <- merge.data.frame(Density.2, Eggs, by = c("Clutch", "Density.micro.l"))
 
 #Plot Figure 2
-png(file = "Figure2.png",
-    width = 4.5, 
-    height = 4.5)
+png(file = "PATH/Figure 2.png",
+    width = 900, 
+    height = 900)
 
 AllEggs 
 
@@ -371,6 +372,7 @@ Walby_outcross_summary
 Density_summary.2$Clutch <- as.factor(Density_summary.2$Clutch)
 Density <- ggplot(Density_summary.2, aes(x=log(predict), y=Proportion.Hatched, shape = Clutch)) +
   theme_classic() +
+  theme(text = element_text(size = 18))+
   xlab("ln(Predicted Egg Density)") +
   ylab("Percent of Eggs Hatched") +
   scale_shape_manual(values = c("Echo_Clutch1" = 0, "Myvatn_Clutch1" = 1, "Myvatn_Clutch2" = 2,
@@ -395,9 +397,9 @@ Density <- ggplot(Density_summary.2, aes(x=log(predict), y=Proportion.Hatched, s
   #annotate("text", x = -Inf, y = Inf, label = "A", hjust = -0.5, vjust = 1, size = 5, fontface = "bold")
 Density
 
-png(file = "Figure3.png",
-    width = 4.5, 
-    height = 4.5)
+png(file = "PATH/Figure3.png",
+    width = 900, 
+    height = 900)
 
 Density 
 
